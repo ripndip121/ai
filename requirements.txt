@@ -1,0 +1,10 @@
+pyls
+numpy
+flake8
+autopep8
+sklearn
+pandas
+matplotlib
+yfinance
+pylama
+pylama-pylint
