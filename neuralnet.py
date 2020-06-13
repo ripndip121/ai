@@ -1,5 +1,5 @@
 import numpy as np
-# import yfinance as yf
+import yfinance as yf
 
 
 class NeuralNetwork():
@@ -9,15 +9,15 @@ class NeuralNetwork():
 
         self.synaptic_weights = 2 * np.random.random((3, 3)) - 1
 
-    # def getcurrentweek(self):
-    #     data = yf.download('TSLA', '2019-10-14', '2019-10-21')
-    #     closing = data[['Adj Close']]
-    #     return [price for price in closing]
-    #
-    # def getlastweek(self):
-    #     data = yf.download('TSLA', '2019-10-07', '2019-10-11')
-    #     closing = data[['Adj Close']]
-    #     return [price for price in closing]
+    def getcurrentweek(self):
+        data = yf.download('TSLA', '2019-10-14', '2019-10-21')
+        closing = data[['Adj Close']]
+        return [price for price in closing]
+
+    def getlastweek(self):
+        data = yf.download('TSLA', '2019-10-07', '2019-10-11')
+        closing = data[['Adj Close']]
+        return [price for price in closing]
 
     def sigmoid(self, x):
         return 1 / (1 + np.exp(- x))
@@ -50,18 +50,18 @@ if __name__ == "__main__":
     print("Random synaptic weights: ")
     print(neural_network.synaptic_weights)
 
-    training_inputs = np.array([[1731, 1728, 1742],
-                                [1728, 1731, 1729],
-                                [1731, 1745, 1761],
-                                ])
+    # training_inputs = np.array([[1731, 1728, 1742],
+    # [1728, 1731, 1729],
+    # [1731, 1745, 1761],
+    # ])
 
-    # training_output = neural_network.getlastweek()
-    # training_inputs = neural_network.getcurrentweek()
+    training_output = neural_network.getlastweek()
+    training_inputs = neural_network.getcurrentweek()
 
-    # print(neural_network.getcurrentweek())
-    # print(neural_network.getlastweek())
+    print(neural_network.getcurrentweek())
+    print(neural_network.getlastweek())
 
-    training_output = np.array([[1731, 1726, 1762, 1781]]).T
+    # training_output = np.array([[1731, 1726, 1762]]).T
     neural_network.train(training_inputs, training_output, 100000)
 
     print("synaptic_weights after Training: ")
